@@ -5,7 +5,7 @@ import logoImg from "../assets/images/logo.svg";
 import googleIconImg from "../assets/images/google-icon.svg";
 
 import "../styles/auth.scss";
-import { Button } from "../components/Button";
+import { CustomButton } from "../components/Buttons";
 import { useAuth } from "../hooks/useAuth";
 import { FormEvent, useState } from "react";
 import { database } from "../services/firebase";
@@ -56,7 +56,7 @@ export function Home() {
           <div className="separator">ou entre em uma sala</div>
           <form onSubmit={handleJoimRoom}>
             <input type="text" placeholder="Digite o código da sala" onChange={e => setRoomCode(e.target.value)} />
-            <Button type="submit">Entrar na sala</Button>
+            <CustomButton type="submit">Entrar na sala</CustomButton>
           </form>
         </div>
       </main>

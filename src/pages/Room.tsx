@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react";
 import { useParams } from "react-router-dom";
 import logoImg from "../assets/images/logo.svg";
-import { Button } from "../components/Button";
+import { CustomButton } from "../components/Buttons";
 import { RoomCode } from "../components/RoomCode";
 import { useAuth } from "../hooks/useAuth";
 import { database } from "../services/firebase";
@@ -82,9 +82,9 @@ export function Room() {
                 Para enviar uma pergunta, <button>faça seu login.</button>
               </span>
             )}
-            <Button disabled={!user} type="submit">
+            <CustomButton disabled={!user} type="submit">
               Enviar pergunta
-            </Button>
+            </CustomButton>
           </div>
         </form>
         <div className="question-list">
