@@ -19,6 +19,10 @@ export const Container = styled.div`
           max-height: 45px;
           filter: contrast(2) brightness(2) invert();
           cursor: pointer;
+
+          &:hover {
+            opacity: 0.8;
+          }
         }
 
         > div {
@@ -116,6 +120,45 @@ export const Container = styled.div`
     }
   }
 
+  @media (max-width: 768px) {
+    #page-room {
+      padding: 10px 10px 40px 10px;
+      header .content {
+        flex-direction: column;
+        > img {
+          display: block;
+          width: 100%;
+          margin-bottom: 18px;
+        }
+        & > div {
+          flex-direction: column-reverse;
+          align-items: center;
+          padding: 0 10px;
+          .button {
+            min-width: 200px;
+            padding: 0 0px;
+          }
+        }
+      }
+      main .room-title {
+        flex-direction: column-reverse;
+        height: auto;
+        margin-top: 5px;
+        justify-content: center;
+        align-items: flex-start;
+        h1 {
+          display: block;
+          margin-bottom: 10px;
+        }
+        span {
+          display: block;
+          margin: 5px 0;
+        }
+      }
+    }
+  }
+  /* }
+
   @media (max-width: 1024px) {
     #page-room {
       width: 100%;
@@ -135,6 +178,9 @@ export const Container = styled.div`
       }
     }
   }
+
+
+
 
   @media (max-width: 768px) {
     #page-room {
@@ -163,5 +209,5 @@ export const Container = styled.div`
         }
       }
     }
-  }
+  } */
 `;

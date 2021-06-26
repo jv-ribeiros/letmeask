@@ -21,7 +21,7 @@ export function PageRoom() {
   const params = useParams<RoomParams>();
   const [newQuestion, setNewQuestion] = useState("");
   const roomId = params.id;
-  const { title, questions } = useRoom(roomId);
+  const { title, questions, authorId } = useRoom(roomId);
   const sortedQuestions = questions
     .sort((a, b) => b.likeCount - a.likeCount)
     .sort(a => (a.isAnswered ? 1 : 0))
@@ -47,11 +47,12 @@ export function PageRoom() {
       isAnswered: false,
     };
 
-    await database.ref(`rooms/${roomId}/questions`).push(question);
+    const key = await database.ref(`rooms/${roomId}/questions`).push(question);
+    handleLikeQuestion(key.key, undefined);
     setNewQuestion("");
   }
 
-  async function handleLikeQuestion(questionId: string, likeId: string | undefined) {
+  async function handleLikeQuestion(questionId: string | null, likeId: string | undefined) {
     if (likeId) {
       await database.ref(`rooms/${roomId}/questions/${questionId}/likes/${likeId}`).remove();
     } else if (user) {
@@ -67,7 +68,14 @@ export function PageRoom() {
         <header>
           <div className="content">
             <img onClick={() => history.push("/")} src={logoImg} alt="Letmeask" />
-            <CodeRoom code={roomId} />
+            <div>
+              <CodeRoom code={roomId} />
+              {authorId === user?.id && (
+                <CustomButton isOutlined onClick={() => history.push(`/admin/rooms/${roomId}/${user.id}`)}>
+                  Admin
+                </CustomButton>
+              )}
+            </div>
           </div>
         </header>
         <main className="content">

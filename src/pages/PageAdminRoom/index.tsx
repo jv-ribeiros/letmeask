@@ -3,17 +3,17 @@ import logoImg from "../../assets/images/logo.svg";
 import { CodeRoom } from "../../components/RoomCode";
 import { database } from "../../services/firebase";
 import { Question } from "../../components/Questions";
-import deleteImg from "../../assets/images/delete.svg";
 import checkImg from "../../assets/images/check.svg";
 import answerImg from "../../assets/images/answer.svg";
 import { Container } from "./styles";
 
 // import "../styles/room.scss";
 import { useRoom } from "../../hooks/useRoom";
-import { CustomButton } from "../../components/Buttons";
+import { EndRoom } from "../../components/Modals/EndRoom";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { useAuth } from "../../hooks/useAuth";
+import DeleteQuestionModal from "../../components/Modals/DeleteQuestions";
 
 type RoomParams = {
   id: string;
@@ -39,17 +39,8 @@ export function PageAdminRoom() {
         toast.error(`You're not the room admin.`);
         return;
       }
-      toast.success(`Welcome again, ${user?.name}`);
     });
   }, [params.admin, history, roomId, user?.name]);
-
-  async function handleEndRoom() {
-    await database.ref(`rooms/${roomId}`).update({
-      endedAt: new Date(),
-    });
-    history.push("/");
-    toast.success("The room was ended.");
-  }
 
   async function handleCheckQuestionAsAnswered(questionId: string) {
     await database.ref(`rooms/${roomId}/questions/${questionId}/likes`).remove();
@@ -66,12 +57,6 @@ export function PageAdminRoom() {
     });
   }
 
-  async function handleDeleteQuestion(questionId: string) {
-    if (window.confirm("Tem certeza que você deseja executar esta pergunta?")) {
-      await database.ref(`rooms/${roomId}/questions/${questionId}`).remove();
-    }
-  }
-
   return (
     <Container>
       <div id="page-room">
@@ -80,9 +65,10 @@ export function PageAdminRoom() {
             <img onClick={() => history.push("/")} src={logoImg} alt="Letmeask" />
             <div>
               <CodeRoom code={roomId} />
-              <CustomButton isOutlined onClick={handleEndRoom}>
-                Encerrar Sala
-              </CustomButton>
+              <div className="buttons">
+                <button onClick={() => history.push(`/rooms/${roomId}`)} className="return">{`<`}</button>
+                <EndRoom roomId={roomId} />
+              </div>
             </div>
           </div>
         </header>
@@ -112,10 +98,7 @@ export function PageAdminRoom() {
                       </button>
                     </>
                   )}
-
-                  <button type="button" onClick={() => handleDeleteQuestion(question.id)}>
-                    <img src={deleteImg} alt="Remove answer" />
-                  </button>
+                  <DeleteQuestionModal question={{ id: question.id, content: question.content }} />
                 </Question>
               );
             })}

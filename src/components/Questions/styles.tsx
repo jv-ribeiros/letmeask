@@ -9,6 +9,8 @@ export const Container = styled.div`
     margin-bottom: 16px;
     overflow-x: auto;
 
+    word-wrap: break-word;
+
     &.highlighted {
       background: #021b0a;
       border-left: 6px solid #0e7206;
@@ -16,7 +18,7 @@ export const Container = styled.div`
 
     &.answered {
       background: rgba(20, 20, 20, 0.7);
-      & p {
+      & > p {
         color: #292929;
       }
       footer .user-info {

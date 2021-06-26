@@ -17,16 +17,37 @@ export const Container = styled.div`
 
         > img {
           max-height: 45px;
-          filter: contrast(2) invert();
+          filter: contrast(2) brightness(2) invert();
           cursor: pointer;
+
+          &:hover {
+            opacity: 0.8;
+          }
         }
 
         > div {
           display: flex;
           gap: 16px;
 
-          button {
-            height: 40px;
+          > .buttons {
+            display: flex;
+            gap: 5px;
+            button {
+              height: 40px;
+            }
+            .return {
+              width: 40px;
+              border: 1px solid #a9a9a9;
+              background: transparent;
+              color: #a9a9a9;
+              border-radius: 25%;
+              font-family: "Poppins", sans-serif;
+              font-size: 20px;
+              cursor: pointer;
+              &:hover {
+                filter: brightness(1.2);
+              }
+            }
           }
         }
       }
