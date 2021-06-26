@@ -41,7 +41,7 @@ export default function DeleteQuestionModal(props: ModalTypes) {
             Cancelar
           </button>
           <button onClick={handleDeleteQuestion} className="confirm">
-            Go it!
+            Ok
           </button>
         </div>
       </div>

@@ -37,7 +37,7 @@ export function EndRoom(props: ModalTypes) {
             Cancelar
           </button>
           <button onClick={handleEndRoom} className="confirm">
-            Sim, encerrar!
+            Ok
           </button>
         </div>
       </div>

@@ -30,7 +30,7 @@ export const Container = styled.div`
 
     &.opened {
       animation: showModal 0.5s;
-      transform: translate(-50%, -220%);
+      transform: scale(0.9) translate(-55%, -220%);
     }
     &.closed {
       display: none;
@@ -99,6 +99,9 @@ export const Container = styled.div`
       width: 85vw;
       height: 40vh;
       padding: 0px 10px;
+      > div button {
+        width: 90px;
+      }
     }
   }
 
@@ -108,7 +111,7 @@ export const Container = styled.div`
       transform: scale(0) translate(-50%, 0%);
     }
     100% {
-      transform: scale(1) translate(-50%, -220%);
+      transform: scale(0.9) translate(-55%, -220%);
       display: block;
     }
   }
