@@ -7,7 +7,7 @@ export const Container = styled.div`
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
     padding: 24px;
     margin-bottom: 16px;
-    overflow: hidden;
+    overflow-x: auto;
 
     &.highlighted {
       background: #021b0a;
@@ -68,6 +68,7 @@ export const Container = styled.div`
           display: flex;
           align-items: flex-end;
           gap: 8px;
+          color: #fff;
           svg path {
             stroke: #fff;
           }

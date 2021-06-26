@@ -6,7 +6,7 @@ const Container = styled.div`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    overflow: auto;
+    overflow-y: auto;
     &::-webkit-scrollbar-track {
       padding: 2px 0;
       background-color: rgb(15, 15, 15);

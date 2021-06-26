@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  padding: 10px;
   #page-room {
     header {
       padding: 24px;
@@ -111,6 +112,30 @@ export const Container = styled.div`
 
       .question-list {
         margin-top: 32px;
+      }
+    }
+  }
+  @media (max-width: 500px) {
+    #page-room {
+      .button {
+        display: block;
+      }
+      padding: 10px 10px 40px 10px;
+      header .content {
+        flex-direction: column;
+        > div {
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 12px;
+        }
+        > img {
+          display: block;
+          width: 100%;
+          margin-bottom: 18px;
+        }
+        > content {
+          display: block;
+        }
       }
     }
   }
