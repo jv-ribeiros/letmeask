@@ -18,7 +18,7 @@
 <br>
 
 <p align="center">
-  <img alt="Happy" src=".github/moveit.jpg" width="100%">
+  <img alt="Happy" src="https://github.com/jv-ribeiros/letmeask/blob/master/Letmeask.jpg" width="100%">
 </p>
 
 ## ✨ Tecnologias
