@@ -7,10 +7,32 @@ export const Container = styled.div`
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
     padding: 24px;
     margin-bottom: 16px;
+    overflow: hidden;
+
+    &.highlighted {
+      background: #021b0a;
+      border-left: 6px solid #0e7206;
+    }
+
+    &.answered {
+      background: rgba(20, 20, 20, 0.7);
+      & p {
+        color: #292929;
+      }
+      footer .user-info {
+        & span {
+          color: #292929;
+        }
+        & img {
+          filter: brightness(0.2) grayscale(2);
+        }
+      }
+    }
 
     p {
       color: #ffffff;
     }
+
     footer {
       display: flex;
       justify-content: space-between;
@@ -32,6 +54,10 @@ export const Container = styled.div`
         }
       }
 
+      > div {
+        display: flex;
+        gap: 16px;
+      }
       button {
         border: 0;
         background: transparent;
@@ -41,8 +67,10 @@ export const Container = styled.div`
         &.like-button {
           display: flex;
           align-items: flex-end;
-          color: #737380;
           gap: 8px;
+          svg path {
+            stroke: #fff;
+          }
 
           &.liked {
             color: #0eb102;

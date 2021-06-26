@@ -16,7 +16,7 @@ export const Container = styled.div`
 
         > img {
           max-height: 45px;
-          filter: contrast(1) invert();
+          filter: contrast(2) invert();
           cursor: pointer;
         }
 

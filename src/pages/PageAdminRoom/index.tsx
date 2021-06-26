@@ -1,9 +1,11 @@
 import { useHistory, useParams } from "react-router-dom";
 import logoImg from "../../assets/images/logo.svg";
-import { CodeRoom } from "../../components/CodeRoom";
+import { CodeRoom } from "../../components/RoomCode";
 import { database } from "../../services/firebase";
 import { Question } from "../../components/Questions";
 import deleteImg from "../../assets/images/delete.svg";
+import checkImg from "../../assets/images/check.svg";
+import answerImg from "../../assets/images/answer.svg";
 import { Container } from "./styles";
 
 // import "../styles/room.scss";
@@ -20,12 +22,33 @@ export function PageAdminRoom() {
   const roomId = params.id;
   const { title, questions } = useRoom(roomId);
 
+  const sortedQuestions = questions
+    .sort((a, b) => b.likeCount - a.likeCount)
+    .sort(a => (a.isAnswered ? 1 : 0))
+    .sort(a => (a.isHighlighted ? -1 : 0));
+
   async function handleEndRoom() {
     await database.ref(`rooms/${roomId}`).update({
       endedAt: new Date(),
     });
     history.push("/");
   }
+
+  async function handleCheckQuestionAsAnswered(questionId: string) {
+    await database.ref(`rooms/${roomId}/questions/${questionId}/likes`).remove();
+    await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
+      isAnswered: true,
+      isHighlighted: false,
+    });
+  }
+
+  async function handleHighligthQuestion(questionId: string) {
+    const response = (await database.ref(`rooms/${roomId}/questions/${questionId}`).get()).child("isHighlighted").val();
+    await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
+      isHighlighted: !response,
+    });
+  }
+
   async function handleDeleteQuestion(questionId: string) {
     if (window.confirm("Tem certeza que você deseja executar esta pergunta?")) {
       await database.ref(`rooms/${roomId}/questions/${questionId}`).remove();
@@ -53,9 +76,26 @@ export function PageAdminRoom() {
           </div>
 
           <div className="question-list">
-            {questions.map(question => {
+            {sortedQuestions.map(question => {
               return (
-                <Question key={question.id} content={question.content} author={question.author}>
+                <Question
+                  key={question.id}
+                  content={question.content}
+                  author={question.author}
+                  isAnswered={question.isAnswered}
+                  isHighlighted={question.isHighlighted}
+                >
+                  {!question.isAnswered && (
+                    <>
+                      <button type="button" onClick={() => handleCheckQuestionAsAnswered(question.id)}>
+                        <img src={checkImg} alt="Check Img like answered" />
+                      </button>
+                      <button type="button" onClick={() => handleHighligthQuestion(question.id)}>
+                        <img src={answerImg} alt="Spotlight answer" />
+                      </button>
+                    </>
+                  )}
+
                   <button type="button" onClick={() => handleDeleteQuestion(question.id)}>
                     <img src={deleteImg} alt="Remove answer" />
                   </button>

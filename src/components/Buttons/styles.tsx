@@ -13,6 +13,7 @@ export const Div = styled.div`
     align-items: center;
     cursor: pointer;
     border: 0;
+    overflow: hidden;
 
     transition: filter 0.2s;
 
@@ -38,5 +39,8 @@ export const Div = styled.div`
 
   .outlined:hover {
     filter: brightness(0.7);
+  }
+
+  @media (max-width: 1035px) {
   }
 `;

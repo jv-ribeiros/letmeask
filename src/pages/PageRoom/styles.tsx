@@ -61,12 +61,11 @@ export const Container = styled.div`
           border: 0;
           padding: 16px;
           border-radius: 15px;
-          background: linear-gradient(153deg, rgba(15, 15, 15, 1) 10%, rgba(30, 30, 30, 1) 80%, rgba(37, 37, 37, 1) 100%);
+          background: linear-gradient(165deg, rgba(30, 30, 30, 1) 80%, rgba(37, 37, 37, 1) 100%);
           color: #fff;
           resize: vertical;
           min-height: 130px;
           outline: none;
-          resize: none;
           &::placeholder {
             color: rgba(130, 130, 130, 1);
           }
@@ -100,7 +99,7 @@ export const Container = styled.div`
             button {
               background: transparent;
               border: 0;
-              color: #835afd;
+              color: #5ad351;
               text-decoration: underline;
               font-weight: 500;
               cursor: pointer;

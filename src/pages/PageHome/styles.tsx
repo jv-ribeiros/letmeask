@@ -15,23 +15,27 @@ export const Container = styled.div`
       align-items: center;
       padding: 120px 80px;
       text-align: center;
+      overflow: hidden;
 
       img {
+        width: 45vw;
+        height: 40vh;
         max-width: 320px;
         filter: invert() contrast(2) brightness(10) saturate(10);
       }
       strong {
-        font: 700 36px "Poppins", sans-serif;
+        font: 700 3vh "Poppins", sans-serif;
         line-height: 42px;
         margin-top: 16px;
         color: #d0d0d0;
         overflow: hidden;
       }
       p {
-        font-size: 24px;
+        font-size: 2vh;
         line-height: 32px;
         margin-top: 14px;
         color: #838383;
+        overflow: hidden;
       }
     }
 
@@ -50,6 +54,7 @@ export const Container = styled.div`
       max-width: 320px;
       align-items: stretch;
       text-align: center;
+      overflow: hidden;
       > img {
         align-self: center;
         filter: contrast(2) brightness(2) invert();
@@ -138,6 +143,21 @@ export const Container = styled.div`
         height: 1px;
         background: #a8a8b3;
         margin-left: 16px;
+      }
+    }
+  }
+
+  @media (max-width: 1035px) {
+    #page-auth {
+      padding-bottom: 50px;
+      /* display: block; */
+      justify-content: center;
+      height: 100vh;
+      aside {
+        display: none;
+      }
+      main {
+        padding: 20px;
       }
     }
   }

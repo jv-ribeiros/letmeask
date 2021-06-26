@@ -6,7 +6,7 @@ export const Container = styled.div`
     height: 100vh;
 
     aside {
-      flex: 7;
+      flex: 8;
       background: radial-gradient(circle, rgba(23, 23, 23, 1) 6%, rgba(15, 15, 15, 1) 45%, rgba(15, 15, 15, 1) 100%);
       color: #838383;
       display: flex;
@@ -17,21 +17,24 @@ export const Container = styled.div`
       text-align: center;
 
       img {
+        width: 45vw;
+        height: 50vh;
         max-width: 320px;
         filter: invert() contrast(2) brightness(10) saturate(10);
       }
       strong {
-        font: 700 36px "Poppins", sans-serif;
+        font: 700 3vh "Poppins", sans-serif;
         line-height: 42px;
         margin-top: 16px;
         color: #d0d0d0;
         overflow: hidden;
       }
       p {
-        font-size: 24px;
+        font-size: 2vh;
         line-height: 32px;
         margin-top: 14px;
         color: #838383;
+        overflow: hidden;
       }
     }
 
@@ -99,6 +102,21 @@ export const Container = styled.div`
             filter: brightness(0.8);
           }
         }
+      }
+    }
+  }
+
+  @media (max-width: 1035px) {
+    #page-auth {
+      padding-bottom: 50px;
+      /* display: block; */
+      justify-content: center;
+      height: 100vh;
+      aside {
+        display: none;
+      }
+      main {
+        padding: 20px;
       }
     }
   }
