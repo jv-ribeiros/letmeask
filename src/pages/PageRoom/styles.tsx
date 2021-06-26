@@ -47,6 +47,7 @@ export const Container = styled.div`
         }
         span {
           margin-left: 16px;
+          min-width: 120px;
           background: #087401;
           border-radius: 9999px;
           padding: 8px 16px;
@@ -114,15 +115,51 @@ export const Container = styled.div`
       }
     }
   }
-  @media (max-width: 500px) {
+
+  @media (max-width: 1024px) {
+    #page-room {
+      width: 100%;
+      padding: 10px 10px 40px 10px;
+    }
+    #page-room main .room-title {
+      align-items: flex-start;
+      flex-direction: column-reverse;
+      margin-top: 5px;
+      h1 {
+        display: block;
+        margin-bottom: 10px;
+      }
+      span {
+        display: block;
+        margin: 10px 0;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
     #page-room {
       padding: 10px 10px 40px 10px;
       header .content {
-        display: block;
+        flex-direction: column;
         > img {
           display: block;
           width: 100%;
           margin-bottom: 18px;
+        }
+      }
+      main .room-title {
+        flex-direction: column-reverse;
+        height: auto;
+        margin-top: 5px;
+        justify-content: center;
+        align-items: flex-start;
+        h1 {
+          display: block;
+          margin-bottom: 10px;
+        }
+        span {
+          display: block;
+          margin: 5px 0;
         }
       }
     }

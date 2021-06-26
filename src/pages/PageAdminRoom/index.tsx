@@ -11,9 +11,13 @@ import { Container } from "./styles";
 // import "../styles/room.scss";
 import { useRoom } from "../../hooks/useRoom";
 import { CustomButton } from "../../components/Buttons";
+import { useEffect } from "react";
+import toast from "react-hot-toast";
+import { useAuth } from "../../hooks/useAuth";
 
 type RoomParams = {
   id: string;
+  admin: string;
 };
 
 export function PageAdminRoom() {
@@ -21,17 +25,30 @@ export function PageAdminRoom() {
   const params = useParams<RoomParams>();
   const roomId = params.id;
   const { title, questions } = useRoom(roomId);
-
+  const { user } = useAuth();
   const sortedQuestions = questions
     .sort((a, b) => b.likeCount - a.likeCount)
     .sort(a => (a.isAnswered ? 1 : 0))
     .sort(a => (a.isHighlighted ? -1 : 0));
+
+  useEffect(() => {
+    const roomRef = database.ref(`/rooms/${roomId}`);
+    roomRef.once("value", room => {
+      if (params.admin !== room.val().authorId) {
+        history.push("/");
+        toast.error(`You're not the room admin.`);
+        return;
+      }
+      toast.success(`Welcome again, ${user?.name}`);
+    });
+  }, [params.admin, history, roomId, user?.name]);
 
   async function handleEndRoom() {
     await database.ref(`rooms/${roomId}`).update({
       endedAt: new Date(),
     });
     history.push("/");
+    toast.success("The room was ended.");
   }
 
   async function handleCheckQuestionAsAnswered(questionId: string) {

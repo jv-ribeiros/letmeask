@@ -47,6 +47,7 @@ export const Container = styled.div`
         }
         span {
           margin-left: 16px;
+          min-width: 120px;
           background: #087401;
           border-radius: 9999px;
           padding: 8px 16px;
@@ -115,26 +116,59 @@ export const Container = styled.div`
       }
     }
   }
-  @media (max-width: 500px) {
+  @media (max-width: 1024px) {
     #page-room {
-      .button {
+      width: 100%;
+      padding: 10px 10px 40px 10px;
+    }
+    #page-room main .room-title {
+      align-items: flex-start;
+      flex-direction: column-reverse;
+      margin-top: 5px;
+      h1 {
         display: block;
+        margin-bottom: 10px;
       }
+      span {
+        display: block;
+        margin: 10px 0;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    #page-room {
       padding: 10px 10px 40px 10px;
       header .content {
         flex-direction: column;
-        > div {
-          flex-wrap: wrap;
-          justify-content: center;
-          gap: 12px;
-        }
         > img {
           display: block;
           width: 100%;
           margin-bottom: 18px;
         }
-        > content {
+        > div {
+          flex-direction: column-reverse;
+          align-items: center;
+          padding: 0 10px;
+          .button {
+            min-width: 200px;
+            padding: 0 0px;
+          }
+        }
+      }
+      main .room-title {
+        flex-direction: column-reverse;
+        height: auto;
+        margin-top: 5px;
+        justify-content: center;
+        align-items: flex-start;
+        h1 {
           display: block;
+          margin-bottom: 10px;
+        }
+        span {
+          display: block;
+          margin: 5px 0;
         }
       }
     }

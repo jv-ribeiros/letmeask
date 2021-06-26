@@ -6,32 +6,32 @@ export const Container = styled.div`
     height: 100vh;
 
     aside {
-      flex: 8;
+      flex: 7;
       background: radial-gradient(circle, rgba(23, 23, 23, 1) 6%, rgba(15, 15, 15, 1) 45%, rgba(15, 15, 15, 1) 100%);
       color: #838383;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 120px 80px;
-      text-align: center;
+      padding: 10vh 2vw;
 
       img {
         width: 45vw;
-        height: 50vh;
+        height: 85%;
+        max-height: 400px;
         max-width: 320px;
         filter: invert() contrast(2) brightness(10) saturate(10);
       }
       strong {
-        font: 700 3vh "Poppins", sans-serif;
-        line-height: 42px;
+        font: 700 32px "Poppins", sans-serif;
         margin-top: 16px;
         color: #d0d0d0;
         overflow: hidden;
+        text-align: left;
       }
       p {
-        font-size: 2vh;
-        line-height: 32px;
+        font-size: 22px;
+        line-break: loose;
         margin-top: 14px;
         color: #838383;
         overflow: hidden;
@@ -39,7 +39,7 @@ export const Container = styled.div`
     }
 
     main {
-      flex: 8;
+      flex: 6;
       padding: 0 32px;
       display: flex;
       align-items: center;

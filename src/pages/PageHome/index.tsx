@@ -11,6 +11,7 @@ import { FormEvent, useState } from "react";
 import { database } from "../../services/firebase";
 
 import { Container } from "./styles";
+import toast from "react-hot-toast";
 
 export function PageHome() {
   const history = useHistory();
@@ -31,11 +32,15 @@ export function PageHome() {
     }
     const roomRef = await database.ref(`/rooms/${roomCode}`).get();
     if (!roomRef.exists()) {
-      alert("Room does not exists.");
+      toast.error("Room does not exists.");
       return;
     }
     if (roomRef.val().endedAt) {
-      alert("Room already closed.");
+      toast.error("This room already ended!");
+      return;
+    }
+    if (roomRef.val().authorId === user?.id) {
+      history.push(`/admin/rooms/${roomCode}/${user?.id}`);
       return;
     }
     history.push(`/rooms/${roomCode}`);
